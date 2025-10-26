@@ -132,6 +132,7 @@ signUpForm.addEventListener("submit", (e) => {
         console.log(response);
         signUpForm.reset();
         alert("Sign Up Successful!");
+        window.location.href = "./dashboard.html";
       })
       .catch(function (error) {
         console.log(error);
