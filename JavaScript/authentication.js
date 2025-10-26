@@ -4,8 +4,8 @@ let content = document.querySelector(".content");
 const container = document.getElementById("authContainer");
 const toggleBtn = document.getElementById("toggleBtn");
 
-const signUpForm = document.querySelector(".signup form");
-const signInForm = document.querySelector(".signin form");
+const signUpForm = document.querySelector(".signup");
+const signInForm = document.querySelector(".signin");
 
 const signUpFullName = document.querySelector(".sign-up-full-name");
 const signUpEmail = document.querySelector(".sign-up-email");
