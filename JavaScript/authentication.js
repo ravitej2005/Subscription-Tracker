@@ -219,7 +219,7 @@ signInForm.addEventListener("submit", async (e) => {
     alert("Login Successful!");
 
     // SPA-style navigation
-    const url = "../dashboard.html";
+    const url = "./dashboard.html";
     const res = await fetch(url);
     const html = await res.text();
     content.innerHTML = html; // inject dashboard content
