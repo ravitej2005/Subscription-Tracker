@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Page</title>
+  <style>
+    /* --- Global Resets & Body --- */
+    body {
+      background-color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* Reset margins for headings and paragraphs */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* --- Navbar --- */
+    .navbar {
+      height: 7vh;
+      width: 100vw;
+      position: fixed;
+      background-color: rgba(255, 255, 255, 0.3);
+      /* grey with 30% opacity */
+      backdrop-filter: blur(10px);
+      top: 0%;
+      left: 0%;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .navbar-logo {
+      color: #111827;
+      left: 4%;
+      position: absolute;
+    }
+
+    .navbar-links {
+      position: absolute;
+      display: flex;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 20px;
+      color: #6B7280;
+    }
+
+    .navbar-links h1 {
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .navbar-links h1:hover {
+      color: #4F46E5;
+    }
+
+    .navbar-actions {
+      position: absolute;
+      left: 100%;
+      display: flex;
+      transform: translateX(-120%);
+      gap: 20px;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .btn-nav {
+      background-color: inherit;
+      border: 0;
+      border-radius: 8px;
+    }
+    
+    .btn-nav h1 {
+      color: black;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 100vh;
+      width: 100vw;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .hero-content {
+      height: 100vh;
+      width: 40%;
+      background: linear-gradient(to right, #F9FAFB 0%, #FFFFFF 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 4%;
+      box-sizing: border-box; /* Ensures padding doesn't add to width */
+    }
+    
+    .hero-title-wrapper {
+      width: 100%;
+      height: 33%;
+      margin-bottom: -50px;
+    }
+
+    .hero-title {
+      color: #111827;
+      font-size: 50px;
+      font-weight: 700;
+      position: relative;
+      white-space: pre-wrap;
+    }
+    
+    .hero-subtitle {
+      margin-top: 16px;
+      color: #6B7280;
+      font-size: 18px;
+    }
+    
+    .hero-buttons {
+      width: 100%;
+      margin-top: 28px;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-subtext {
+      margin-top: 14px;
+      color: #6B7280;
+      font-size: 12px;
+    }
+
+    .hero-mockup {
+      height: 100vh;
+      top: 0;
+      width: 60%;
+      background-color: linear-gradient(to right, #F9FAFB 0%, #FFFFFF 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mockup-window {
+      background-color: white;
+      height: 50%;
+      width: 80%;
+      position: sticky;
+      border: 0;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1);
+      justify-content: flex-start;
+      gap: 10px;
+    }
+    
+    .mockup-header {
+      width: 100%;
+      height: 5%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 5px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: black;
+    }
+    
+    .mockup-dot {
+      margin-top: 3.5px;
+      border-radius: 100%;
+      width: 1.5vh;
+      height: 1.5vh;
+    }
+    .dot-green { background-color: green; }
+    .dot-yellow { background-color: yellow; }
+    .dot-red { background-color: red; margin-right: 5px; }
+
+    .mockup-line {
+      background-color: indigo;
+      border-radius: 4px;
+      width: 60%;
+      margin-left: 2%;
+      height: 5%;
+    }
+    
+    .mockup-footer {
+      z-index: 2;
+      width: 100%;
+      height: 5%;
+      position: relative;
+      top: 72.7%; /* This was the original inline calc, kept for layout */
+      background-color: grey;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    
+    /* --- Buttons --- */
+    .btn {
+      padding: 15px;
+      border-radius: 8px;
+      font-size: medium;
+      transition: color 0.3s, background-color 0.3s;
+      cursor: pointer; /* Added for better UX */
+    }
+
+    .btn-primary {
+      background-color: #4F46E5;
+      border: 0;
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: white;
+      color: indigo;
+    }
+    
+    .btn-secondary {
+      border: 1px solid indigo; /* Fixed from border-color */
+      color: #4F46E5;
+      background-color: white; /* Added for consistency */
+    }
+
+    .btn-secondary:hover {
+      background-color: #4F46E5;
+      color: white;
+    }
+
+    /* --- Page Sections (Features, Pricing, Customers) --- */
+    .page-section {
+      width: 100vw;
+      height: 100vh;
+      background-color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .section-title {
+      font-size: 30px;
+      font-weight: 500;
+      color: #0f172a;
+    }
+
+    /* --- Cards (Used for Features, Pricing, Testimonials) --- */
+    .card-row {
+      gap: 30px;
+      width: 50%;
+      height: 30%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .card {
+      height: 100%;
+      width: 40%; /* Default width for feature/testimonial cards */
+      display: flex;
+      background-color: white;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      padding: 0 20px;
+      box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      box-sizing: border-box; /* Added for padding */
+    }
+
+    .card:hover {
+      box-shadow: 50px 50px 50px rgba(0, 0, 0, 0.1);
+      transform: translateY(-10px);
+    }
+
+    .card-icon {
+      font-size: 40px;
+    }
+    
+    .card-title-feature {
+      transform: translateY(70%);
+    }
+    
+    .card-description {
+      color: grey;
+      text-align: center;
+    }
+    
+    /* Pricing Card Specifics */
+    .card-pricing {
+      width: 30%; /* Override default width */
+      border: 5px solid #4F46E5;
+    }
+    
+    .card-icon-pricing {
+      font-size: 40px; /* Same as .card-icon, but named for pricing plan */
+    }
+
+    .btn-buy {
+      width: 30%;
+      height: 10%;
+      color: #4F46E5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 0;
+      border-radius: 5px;
+      padding: 20px;
+      align-items: center;
+      font-size: 1em; /* Added font size */
+      background: none; /* Added */
+      cursor: pointer; /* Added */
+      transition: color 0.3s, background-color 0.3s; /* Added */
+    }
+
+    .btn-buy:hover {
+      color: white;
+      background-color: #4F46E5;
+    }
+
+    /* Testimonial Card Specifics */
+    .card-title-testimonial {
+      transform: translateY(70%);
+    }
+
+    /* --- Spacer Section --- */
+    .spacer-section {
+      height: 80vh;
+      width: 100vw;
+      background-color: white;
+    }
+    
+    /* --- CTA Section (Footer) --- */
+    .cta-section {
+      height: 30vh;
+      width: 100vw;
+      background-color: #4F46E5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cta-title {
+      color: white;
+    }
+    
+    .btn-cta {
+      width: 10%;
+      height: 20%;
+      color: #4F46E5;
+      border-radius: 10px;
+      border: 0;
+      font-size: 1em; /* Added */
+      cursor: pointer; /* Added */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1 class="navbar-logo">subtrackr</h1>
+    <div class="navbar-links">
+      <h1>Features</h1>
+      <h1>Pricing</h1>
+      <h1>Contact</h1>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn-nav">
+        <h1>Login</h1>
+      </button>
+      <button class="btn-nav">
+        <h1>Sign up</h1>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title" id="typingtext"></h1>
+      </div>
+      <h1 class="hero-subtitle">"A simple dashboard to monitor, manage, and optimize your recurring costs.”</h1>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Get Started Free!</button>
+        <button class="btn btn-secondary">View Demo!</button>
+      </div>
+      <h1 class="hero-subtext">No credit card required.</h1>
+    </div>
+    <div class="hero-mockup">
+      <div class="mockup-window">
+        <div class="mockup-header">
+          <div class="mockup-dot dot-green"></div>
+          <div class="mockup-dot dot-yellow"></div>
+          <div class="mockup-dot dot-red"></div>
+        </div>
+        <div class="mockup-line"></div>
+        <div class="mockup-line"></div>
+        <div class="mockup-footer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <h1 class="section-title">Powerful Features to Simplify Your Work</h1>
+    <div class="card-row">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3 class="card-title-feature">Real-time Analysis</h3>
+        <p class="card-description">Track and analyze your data in real time with instant visual reports and insights.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3 class="card-title-feature">Lightning Fast</h3>
+        <p class="card-description">Experience a highly optimized platform designed to run smoothly on any device.</p>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card">
+        <div class="card-icon">☁</div>
+        <h3 class="card-title-feature">Cloud Sync</h3>
+        <p class="card-description">Access your files securely from anywhere with seamless cloud synchronization.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-section">
+  </div>
+
+  <div class="page-section">
+    <h1 class="section-title">Choose your plan</h1>
+    <div class="card-row">
+      <div class="card card-pricing card-highlight">
+        <div class="card-icon-pricing">Free</div>
+        <p class="card-description">Track and analyze your data in real time with instant visual reports and insights.</p>
+        <button class="btn-buy">Buy</button>
+      </div>
+      <div class="card card-pricing card-highlight">
+        <div class="card-icon-pricing">Pro</div>
+        <p class="card-description">Experience a highly optimized platform designed to run smoothly on any device.</p>
+        <button class="btn-buy">Buy</button>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card card-pricing card-highlight">
+        <div class="card-icon-pricing">Enterprise</div>
+        <p class="card-description">Access your files securely from anywhere with seamless cloud synchronization.</p>
+        <button class="btn-buy">Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <h1 class="section-title">Our customers</h1>
+    <div class="card-row">
+      <div class="card card-testimonial">
+        <p class="card-description">"Saved lots of money!"</p>
+        <h3 class="card-title-testimonial">Kyan Stone</h3>
+      </div>
+      <div class="card card-testimonial">
+        <p class="card-description">"Intuitive interface and lightning fast performance."</p>
+        <h3 class="card-title-testimonial">John Smith</h3>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card card-testimonial">
+        <p class="card-description">"Saved me hours of trouble!"</p>
+        <h3 class="card-title-testimonial">John Doe</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h1 class="cta-title">Ready to get started?</h1>
+    <button class="btn-cta">Contact us</button>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription Tracker | Auth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/authentication.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-container" id="authContainer">
+
+      <div class="form-section signup">
+        <h2>Create Account</h2>
+        <form method="post">
+          <div class="scrollable-form">
+            <div class="input-box">
+              <input type="text" class="sign-up-full-name"  />
+              <label>Full Name</label>
+            </div>
+
+            <div class="input-box">
+              <input type="email" class="sign-up-email"  />
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <input type="password" class="sign-up-password"  />
+              <label>Password</label>
+            </div>
+
+            <div class="input-box">
+              <input type="password" class="sign-up-confirm-password"  />
+              <label>Confirm Password</label>
+            </div>
+
+            <div class="input-box">
+              <input type="tel" class="sign-up-phone" />
+              <label>Phone Number (Optional)</label>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" id="terms" class="sign-up-checkbox" />
+              <label for="terms">I agree to the Terms & Conditions</label>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-section signin">
+        <h2>Welcome Back</h2>
+        <form method="post">
+          <div class="scrollable-form">
+            <div class="input-box">
+              <input type="email" class="sign-in-email"  />
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <input type="password" class="sign-in-password"  />
+              <label>Password</label>
+            </div>
+
+            <button type="submit" class="btn">Sign In</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="info-section">
+        <h3>New here?</h3>
+        <p>Create your account to start tracking subscriptions smartly.</p>
+        <button id="toggleBtn">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="JavaScript/authentication.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

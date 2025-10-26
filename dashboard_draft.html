@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      gap: 23px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f1f5;
+      min-height: 100vh;
+      min-width: 100vw;
+      padding: 2.5vh 8vw;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .sidebar {
+      background-color: white;
+      width: 9vw;
+      height: 80vh;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0 15px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .sidebar-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      height: 10%;
+      gap: 10px;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar-header__logo {
+      width: 45px;
+      height: 45px;
+      background-color: #4F46E5;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sidebar-header__logo p {
+      font-size: 25px;
+      color: white;
+    }
+
+    .sidebar-header__text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header__title {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .sidebar-header__subtitle {
+      color: grey;
+      font-size: 10px;
+    }
+
+    .nav-item {
+      width: 90%;
+      height: 5%;
+      border: 0 solid black;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      color: grey;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .nav-item:hover {
+      background-color: #b4b2db;
+      color: #4F46E5;
+    }
+
+    .main-content {
+      background-color: #f0f1f5;
+      border-radius: 10px;
+      min-height: 100vh;
+      height: fit-content;
+      width: 50vw;
+      display: flex;
+      flex-direction: column;
+      padding-top: 5px;
+      gap: 10px;
+    }
+
+    .header-bar {
+      display: flex;
+      width: 100%;
+      height: 10%;
+      padding: 0;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      background-color: #d4d3e6;
+      border: 0;
+      border-radius: 5px;
+      width: 12.5vw;
+      height: 4vh;
+      margin-top: 1px;
+      padding-left: 10px;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      background-color: #F3F4F6;
+      width: 5vw;
+      padding: 5px;
+      border-radius: 5px;
+      justify-content: space-around;
+      margin-top: -5px;
+    }
+
+    .user-profile__avatar {
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background-color: #d4d3e6;
+      justify-content: center;
+      color: grey;
+      border: 1px solid white;
+    }
+
+    .user-profile__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0;
+    }
+
+    .user-profile__name {
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    .user-profile__plan {
+      font-size: 10px;
+      color: grey;
+    }
+
+    .content-wrapper {
+      background-color: white;
+      border: 1px solid #d4d3e6;
+      border-radius: 10px;
+      width: 100%;
+      min-height: 70vh;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .stats-container {
+      width: 100%;
+      height: 12vh;
+      background-color: white;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .stat-card {
+      width: 32%;
+      height: 100%;
+      border: 1px solid #d4d3e6;
+      border-radius: 10px;
+      background-color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+
+    .stat-card__title {
+      color: grey;
+    }
+
+    .stat-card__value {
+      
+    }
+
+    .stat-card__info {
+      color: grey;
+    }
+
+    .dashboard-heading {
+      margin-bottom: 0;
+      margin-top: 12px;
+    }
+
+    .subscriptions-layout {
+      height: fit-content;
+      width: 100%;
+      min-height: 50vh;
+      border: 0;
+      margin-top: -8px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .subscription-grid {
+      width: 80%;
+      min-height: 40vh;
+      height: fit-content;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start;
+      border: 0 solid black;
+    }
+
+    .subscription-card {
+      width: 32%;
+      height: 15vh;
+      border-radius: 10px;
+      border: 1px solid grey;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    .sub-card-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      margin-left: 9px;
+    }
+
+    .sub-card-icon {
+      border: 0;
+      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      background-color: #b4b2db;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sub-card-button {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #4F46E5;
+      color: #4F46E5;
+      background: none;
+    }
+
+    .sub-card-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 5px;
+      margin-left: 10px;
+      margin-bottom: 20px;
+    }
+
+    .sub-card-name {
+    }
+
+    .sub-card-info {
+      font-size: 12px;
+      color: grey;
+    }
+
+    .sub-card-price {
+    }
+
+    .overview-panel {
+      width: 18%;
+      min-height: 40vh;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 8px;
+      border: 2px solid #d4d3e6;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    .overview-title {
+      color: grey;
+    }
+
+    .overview-total {
+      margin: 0;
+      padding: 0;
+      color: #111827;
+    }
+
+    .overview-upcoming-title {
+      color: grey;
+      font-size: 13px;
+    }
+
+    .overview-upcoming-item {
+      margin-top: -10px;
+      font-size: 15px;
+      color: #494a4d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-header__logo">
+        <p>S</p>
+      </div>
+      <div class="sidebar-header__text">
+        <p class="sidebar-header__title">SubTrackr</p>
+        <p class="sidebar-header__subtitle">Manage subscriptions</p>
+      </div>
+    </div>
+    <div class="nav-item">Dashboard</div>
+    <div class="nav-item">Analytics</div>
+    <div class="nav-item">Add subscription</div>
+    <div class="nav-item">Settings</div>
+  </div>
+
+  <div class="main-content">
+    <div class="header-bar">
+      <input type="text" placeholder="Search" class="search-input">
+      <div class="user-profile">
+        <div class="user-profile__avatar">
+          S
+        </div>
+        <div class="user-profile__info">
+          <p class="user-profile__name">Suraj</p>
+          <p class="user-profile__plan">Free</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="stats-container">
+        <div class="stat-card">
+          <p class="stat-card__title">Total Spend</p>
+          <h3 class="stat-card__value">₹3,978</h3>
+          <p class="stat-card__info">+2.4% this month</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__title">Active subs</p>
+          <h3 class="stat-card__value">6</h3>
+          <p class="stat-card__info">2 new</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__title">Upcoming renewals</p>
+          <h3 class="stat-card__value">2</h3>
+          <p class="stat-card__info">This week</p>
+        </div>
+      </div>
+
+      <h2 class="dashboard-heading">Subscriptions</h2>
+
+      <div class="subscriptions-layout">
+        <div class="subscription-grid">
+          <div class="subscription-card">
+            <div class="sub-card-left">
+              <div class="sub-card-icon">N</div>
+              <button class="sub-card-button">Pause</button>
+            </div>
+            <div class="sub-card-details">
+              <h4 class="sub-card-name">Netflix</h4>
+              <p class="sub-card-info">Entertainment.Monthly</p>
+              <h3 class="sub-card-price">$649</h3>
+            </div>
+          </div>
+          <div class="subscription-card">
+            <div class="sub-card-left">
+              <div class="sub-card-icon">N</div>
+              <button class="sub-card-button">Pause</button>
+            </div>
+            <div class="sub-card-details">
+              <h4 class="sub-card-name">Netflix</h4>
+              <p class="sub-card-info">Entertainment.Monthly</p>
+              <h3 class="sub-card-price">$649</h3>
+            </div>
+          </div>
+          <div class="subscription-card">
+            <div class="sub-card-left">
+              <div class="sub-card-icon">N</div>
+              <button class="sub-card-button">Pause</button>
+            </div>
+            <div class="sub-card-details">
+              <h4 class="sub-card-name">Netflix</h4>
+              <p class="sub-card-info">Entertainment.Monthly</p>
+              <h3 class="sub-card-price">$649</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-panel">
+          <p class="overview-title">Overview</p>
+          <h2 class="overview-total">₹3,978</h2>
+          <p class="overview-upcoming-title">Upcoming renewals</p>
+          <p class="overview-upcoming-item">Spotify-Oct 08</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
