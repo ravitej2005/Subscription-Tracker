@@ -1,5 +1,5 @@
 const baseURL = `http://localhost:8080/api/auth`
-let content = document.getElement(html);
+let content = document.querySelector(".content");
 
 const container = document.getElementById("authContainer");
 const toggleBtn = document.getElementById("toggleBtn");
