@@ -140,58 +140,7 @@ signUpForm.addEventListener("submit", (e) => {
   }
 });
 
-// signInForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   let valid = true;
-
-//   [signInEmail, signInPassword].forEach(removeError);
-
-//   if (!emailRegex.test(signInEmail.value.trim())) {
-//     showError(signInEmail, "Enter a valid email address");
-//     valid = false;
-//   }
-
-//   if (signInPassword.value.trim() === "") {
-//     showError(signInPassword, "Password is required");
-//     valid = false;
-//   }
-
-//   if (valid) {
-//     const email = signInEmail.value.trim();
-//     const password = signInPassword.value.trim();
-
-//     axios.post(`${baseURL}/login`, {
-//       "email": `${email}`,
-//       "password": `${password}`
-//     })
-//       .then(function (response) {
-//         console.log(response);
-//         signInForm.reset();
-//         alert("Login Successful!");
-
-//         e.preventDefault();
-//         const url = `../dashboard.html`;
-//         const res = fetch(url).then(function (response) {
-//           return response.text().then(function (response) {
-//             content.innerHTML = html; // update content dynamically
-//             window.history.pushState({}, "", url); // update URL without 
-//           });
-//         });
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//         alert(`Log in Failed!\n${error.response.data}`);
-//       });
-//   }
-// });
-
-
-// window.addEventListener('popstate', async () => {
-//   const res = await fetch(location.pathname);
-//   content.innerHTML = await res.text();
-// });
-
-signInForm.addEventListener("submit", async (e) => {
+signInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let valid = true;
 
@@ -207,34 +156,29 @@ signInForm.addEventListener("submit", async (e) => {
     valid = false;
   }
 
-  if (!valid) return;
+  if (valid) {
+    const email = signInEmail.value.trim();
+    const password = signInPassword.value.trim();
 
-  const email = signInEmail.value.trim();
-  const password = signInPassword.value.trim();
-
-  try {
-    const response = await axios.post(`${baseURL}/login`, { email, password });
-    console.log(response);
-    signInForm.reset();
-    alert("Login Successful!");
-
-    // SPA-style navigation
-    const url = "./dashboard.html";
-    const res = await fetch(url);
-    const html = await res.text();
-    content.innerHTML = html; // inject dashboard content
-    window.history.pushState({}, "", url); // update URL without full reload
-
-  } catch (error) {
-    console.log(error);
-    alert(`Log in Failed!\n${error.response?.data || error.message}`);
+    axios.post(`${baseURL}/login`, {
+      "email": `${email}`,
+      "password": `${password}`
+    })
+      .then(function (response) {
+        console.log(response);
+        signInForm.reset();
+        alert("Login Successful!");
+        window.location.href = "./dashboard.html";
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert(`Log in Failed!\n${error.response.data}`);
+      });
   }
 });
 
-// Handle browser back/forward buttons
-window.addEventListener('popstate', async () => {
-  const res = await fetch(location.pathname);
-  const html = await res.text();
-  content.innerHTML = html;
-});
+
+
+
+
 
