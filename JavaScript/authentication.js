@@ -127,7 +127,7 @@ signUpForm.addEventListener("submit", (e) => {
       "password": `${password}`,
       "confirmPassword": `${cnfPassword}`,
       "phoneNumber": `${phoneNumber}`
-    })
+    },{ withCredentials: true })
       .then(function (response) {
         console.log(response);
         signUpForm.reset();
@@ -164,7 +164,7 @@ signInForm.addEventListener("submit", (e) => {
     axios.post(`${baseURL}/login`, {
       "email": `${email}`,
       "password": `${password}`
-    })
+    },{ withCredentials: true })
       .then(function (response) {
         console.log(response);
         signInForm.reset();
@@ -177,9 +177,3 @@ signInForm.addEventListener("submit", (e) => {
       });
   }
 });
-
-
-
-
-
-

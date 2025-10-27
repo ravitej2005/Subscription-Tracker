@@ -1,4 +1,19 @@
-const subscriptions = [
+const baseURL = `http://localhost:8080/api/user`;
+
+
+  (async () => {
+    try {
+      const response = await axios.get(`${baseURL}/profile`, { withCredentials: true });
+      const user = response.data;
+      console.log("User data:", user);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      alert("Failed to load user data. Please try again.");
+      // window.location.href = "./index.html";
+    }
+  })();
+
+  const subscriptions = [
   { name: "Netflix", price: 499, renewal: "2025-11-05", category: "Entertainment" },
   { name: "Spotify", price: 199, renewal: "2025-11-10", category: "Music" },
   { name: "Adobe Creative Cloud", price: 1675, renewal: "2025-11-15", category: "Productivity" },
